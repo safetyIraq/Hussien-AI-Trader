@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace 'com.hussien.goldai'
-    compileSdk 34 // متوافق مع أحدث إصدارات 2026
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.hussien.goldai"
@@ -12,8 +12,6 @@ android {
         targetSdk 34
         versionCode 1
         versionName "1.0-Hussein-AI"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
