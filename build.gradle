@@ -4,14 +4,8 @@ buildscript {
         mavenCentral()
     }
     dependencies {
+        // محرك بناء الأندرويد الإصدار المستقر لعام 2026
         classpath "com.android.tools.build:gradle:8.2.0"
-    }
-}
-
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
     }
 }
 
