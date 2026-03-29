@@ -1,15 +1,19 @@
 package com.hussien.goldai;
 
-import android.os.*;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
-import java.util.*;
+import android.app.Activity; // التعديل الذهبي هنا ✅
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity { // وهنا أيضاً ✅
 
     private TextView priceLabel, signalStatus;
     private List<Double> priceHistory = new ArrayList<>();
-    private Handler handler = new Handler();
+    private Handler handler = new Handler(Looper.getMainLooper()); // لتجنب أي كراش بالخلفية
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         priceLabel = findViewById(R.id.priceLabel);
         signalStatus = findViewById(R.id.signalStatus);
 
-        // محاكاة سحب البيانات كل 2 ثانية (Real-time Simulation)
+        // تشغيل محرك التداول 🚀
         startTradingLoop();
     }
 
@@ -27,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                // توليد سعر ذهب تقريبي (Live Simulation)
                 double livePrice = 4550 + (new Random().nextDouble() * 15);
                 priceHistory.add(livePrice);
                 if (priceHistory.size() > 20) priceHistory.remove(0);
@@ -37,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 String signal = TradingEngine.analyzeMarket(livePrice, priceHistory);
                 signalStatus.setText(signal);
 
+                // تكرار العملية كل ثانيتين
                 handler.postDelayed(this, 2000);
             }
         }, 2000);
