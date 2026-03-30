@@ -5,7 +5,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import com.hussien.goldaitrader.R; 
+
+// تم تصحيح الاستيراد ليتطابق مع الـ Namespace الموحد
+import com.hussien.goldai.R; 
+
 import okhttp3.*;
 import org.json.JSONObject;
 import java.io.IOException;
@@ -26,17 +29,22 @@ public class MainActivity extends AppCompatActivity {
             txtBull = findViewById(R.id.txtBull);
             txtBear = findViewById(R.id.txtBear);
 
+            if (aiConsole == null) {
+                Toast.makeText(this, "خطأ في تحميل الواجهة", Toast.LENGTH_LONG).show();
+                return;
+            }
+
             findViewById(R.id.btnBuy).setOnClickListener(v -> executeTrade("BUY"));
             findViewById(R.id.btnSell).setOnClickListener(v -> executeTrade("SELL"));
 
             runSniperEngine();
         } catch (Exception e) {
-            android.util.Log.e("SHADOW", "ERROR: " + e.getMessage());
+            android.util.Log.e("SHADOW_TRADER", "CRASH: " + e.getMessage());
         }
     }
 
     private void runSniperEngine() {
-        // النسب الظاهرة في صورتك
+        // النسب الظاهرة في التحليل
         txtBull.setText("BULL SCORE: 85%");
         txtBear.setText("BEAR SCORE: 15%");
         requestDeepSeekAnalysis("Gold Trend: Bull 85%. Give Sniper Entry.");
@@ -49,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             json.put("messages", new org.json.JSONArray().put(new JSONObject().put("role", "user").put("content", message)));
 
             Request request = new Request.Builder()
-                    // الرابط المصحح لإنهاء مشكلة Not Found
+                    // الرابط الرسمي للـ API لضمان استلام البيانات
                     .url("https://api.deepseek.com/chat/completions") 
                     .addHeader("Authorization", "Bearer " + AI_TOKEN)
                     .post(RequestBody.create(json.toString(), MediaType.get("application/json")))
@@ -61,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
                     final String result = response.body().string();
                     runOnUiThread(() -> {
                         if (aiConsole != null) {
-                            // مسح الرسالة القديمة وعرض التحليل الحقيقي
                             aiConsole.append("\n> AI ANALYSIS RECEIVED ✅");
                             aiConsole.append("\n> " + result);
                         }
