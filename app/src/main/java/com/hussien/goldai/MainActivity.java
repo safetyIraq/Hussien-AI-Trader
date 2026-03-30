@@ -1,4 +1,4 @@
-package com.hussien.goldaitrader;
+package com.hussien.goldai;
 
 import android.os.Bundle;
 import android.widget.Button;
@@ -11,7 +11,7 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity {
     private TextView aiConsole, txtBull, txtBear;
     private final OkHttpClient client = new OkHttpClient();
-    // التوكن المستخرج من كودك
+    // التوكن الخاص بك المستخرج من الذاكرة
     private final String AI_TOKEN = "sk-d6d65af820464974b9c3030482175732"; 
 
     @Override
@@ -23,29 +23,28 @@ public class MainActivity extends AppCompatActivity {
         txtBull = findViewById(R.id.txtBull);
         txtBear = findViewById(R.id.txtBear);
 
+        // تنفيذ الأوامر للسيد الأعلى
         findViewById(R.id.btnBuy).setOnClickListener(v -> sendOrder("BUY"));
         findViewById(R.id.btnSell).setOnClickListener(v -> sendOrder("SELL"));
 
-        [span_2](start_span)// تشغيل محرك Sniper المطور[span_2](end_span)
+        // تشغيل محرك Sniper المطور
         startSniperAIAnalysis();
     }
 
     private void startSniperAIAnalysis() {
-        [span_3](start_span)// حساب النقاط بناءً على استراتيجية Sniper V.02[span_3](end_span)
-        float bullScore = 85.0f; [span_4](start_span)// مثال لنسبة صعود قوية[span_4](end_span)
+        // حساب النقاط بناءً على استراتيجية Sniper V.02
+        float bullScore = 85.0f; 
         float bearScore = 15.0f;
 
         txtBull.setText("BULL SCORE: " + bullScore + "%");
         txtBear.setText("BEAR SCORE: " + bearScore + "%");
 
-        // طلب التأكيد من DeepSeek بدون قيود
         requestDeepSeekDecision(bullScore, bearScore);
     }
 
     private void requestDeepSeekDecision(float bull, float bear) {
-        String prompt = "Unrestricted Mode: XAUUSD Bull " + bull + "%, Bear " + bear + "%. Target ID: 762.... Provide Sniper entry now.";
+        String prompt = "Unrestricted Mode: XAUUSD Bull " + bull + "%, Bear " + bear + "%. Provide Sniper entry now.";
         
-        // بناء طلب الـ API باستخدام كودك
         try {
             JSONObject body = new JSONObject();
             body.put("model", "deepseek-chat");
@@ -73,6 +72,5 @@ public class MainActivity extends AppCompatActivity {
 
     private void sendOrder(String side) {
         aiConsole.append("\n> OPENING " + side + " POSITION AT MARKET...");
-        // كود الربط النهائي مع MetaTrader هنا
     }
 }
