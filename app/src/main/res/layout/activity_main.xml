@@ -2,29 +2,27 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#050505"
-    android:padding="12dp">
+    android:background="#020202"
+    android:padding="10dp">
 
     <LinearLayout
-        android:id="@+id/header_stats"
+        android:id="@+id/scoreBoard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#111111"
         android:orientation="horizontal"
         android:padding="15dp"
         android:weightSum="2">
-
         <TextView
-            android:id="@+id/txtBullScore"
+            android:id="@+id/txtBull"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="BULL: 0%"
             android:textColor="#00FF00"
             android:textStyle="bold" />
-
         <TextView
-            android:id="@+id/txtBearScore"
+            android:id="@+id/txtBear"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -35,16 +33,16 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/ai_terminal"
+        android:id="@+id/ai_console"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_below="@id/header_stats"
+        android:layout_height="280dp"
+        android:layout_below="@id/scoreBoard"
         android:layout_marginTop="10dp"
         android:background="#000000"
         android:fontFamily="monospace"
-        android:padding="10dp"
-        android:text="> INITIALIZING SHADOW ENGINE...\n> WAITING FOR USER COMMAND..."
-        android:textColor="#00FF41"
+        android:padding="12dp"
+        android:text="> SYSTEM ONLINE: SNIPER MODE V.02\n> ANALYZING XAUUSD TREND..."
+        android:textColor="#40E0D0" 
         android:textSize="12sp" />
 
     <LinearLayout
@@ -52,25 +50,21 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="vertical"
-        android:paddingBottom="10dp">
-
+        android:paddingBottom="5dp">
         <Button
             android:id="@+id/btnBuy"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:backgroundTint="#1B5E20"
-            android:text="SNIPER BUY (فتح صفقة شراء)"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp" />
-
+            android:layout_height="75dp"
+            android:backgroundTint="#00C853"
+            android:text="EXECUTE SNIPER BUY 🚀"
+            android:textSize="17sp" />
         <Button
             android:id="@+id/btnSell"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="#B71C1C"
-            android:text="SNIPER SELL (فتح صفقة بيع)"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp" />
+            android:layout_height="75dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#D50000"
+            android:text="EXECUTE SNIPER SELL 📉"
+            android:textSize="17sp" />
     </LinearLayout>
 </RelativeLayout>
