@@ -3,15 +3,15 @@ plugins {
 }
 
 android {
-    namespace 'com.hussien.goldaitrader'
+    namespace 'com.hussien.goldai'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.hussien.goldaitrader"
+        applicationId "com.hussien.goldai"
         minSdk 24
         targetSdk 34
-        versionCode 2
-        versionName "2.0_Pro_Sniper"
+        versionCode 4
+        versionName "4.0_Shadow_Final"
     }
 
     buildTypes {
@@ -28,7 +28,6 @@ android {
 
 dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.12.0'
-    implementation 'com.google.code.gson:gson:2.10.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
 }
