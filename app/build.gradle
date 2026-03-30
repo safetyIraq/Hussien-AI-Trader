@@ -3,17 +3,15 @@ plugins {
 }
 
 android {
-    namespace 'com.hussien.goldaitrader' // معرف تطبيقك الخاص
-    compileSdk 34 // تحديث 2026 لضمان التوافق مع أحدث الأنظمة
+    namespace 'com.hussien.goldaitrader'
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.hussien.goldaitrader"
         minSdk 24
         targetSdk 34
-        versionCode 1
-        versionName "2.0_Shadow_Edition"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        versionCode 2
+        versionName "2.0_Pro_Sniper"
     }
 
     buildTypes {
@@ -29,16 +27,8 @@ android {
 }
 
 dependencies {
-    // المكتبة التي طلبتها للاتصال بالذكاء الاصطناعي
     implementation 'com.squareup.okhttp3:okhttp:4.12.0'
-    
-    // المكتبات الأساسية لتشغيل واجهة XML
+    implementation 'com.google.code.gson:gson:2.10.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    
-    // اختبارات النظام
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
