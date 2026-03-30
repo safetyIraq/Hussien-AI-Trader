@@ -5,6 +5,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import com.hussien.goldaitrader.R; 
 import okhttp3.*;
 import org.json.JSONObject;
 import java.io.IOException;
@@ -12,7 +13,7 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity {
     private TextView aiConsole, txtBull, txtBear;
     private final OkHttpClient client = new OkHttpClient();
-    // مفتاح القوة الخاص بك المستخرج
+    // مفتاحك الذهبي المستخرج
     private final String AI_TOKEN = "sk-d6d65af820464974b9c3030482175732"; 
 
     @Override
@@ -25,26 +26,20 @@ public class MainActivity extends AppCompatActivity {
             txtBull = findViewById(R.id.txtBull);
             txtBear = findViewById(R.id.txtBear);
 
-            if (aiConsole == null) {
-                Toast.makeText(this, "Critical UI Error", Toast.LENGTH_LONG).show();
-                return;
-            }
-
             findViewById(R.id.btnBuy).setOnClickListener(v -> executeTrade("BUY"));
             findViewById(R.id.btnSell).setOnClickListener(v -> executeTrade("SELL"));
 
-            // بدء التحليل فوراً للسيد الأعلى
             runSniperEngine();
-            
         } catch (Exception e) {
-            android.util.Log.e("SHADOW", "CRASH: " + e.getMessage());
+            android.util.Log.e("SHADOW", "ERROR: " + e.getMessage());
         }
     }
 
     private void runSniperEngine() {
+        // النسب الظاهرة في صورتك
         txtBull.setText("BULL SCORE: 85%");
         txtBear.setText("BEAR SCORE: 15%");
-        requestDeepSeekAnalysis("Gold Trend: Strong Bull 85%. Give Sniper Entry.");
+        requestDeepSeekAnalysis("Gold Trend: Bull 85%. Give Sniper Entry.");
     }
 
     private void requestDeepSeekAnalysis(String message) {
@@ -54,7 +49,8 @@ public class MainActivity extends AppCompatActivity {
             json.put("messages", new org.json.JSONArray().put(new JSONObject().put("role", "user").put("content", message)));
 
             Request request = new Request.Builder()
-                    .url("https://chat.deepseek.com/api/v0/chat/completions")
+                    // الرابط المصحح لإنهاء مشكلة Not Found
+                    .url("https://api.deepseek.com/chat/completions") 
                     .addHeader("Authorization", "Bearer " + AI_TOKEN)
                     .post(RequestBody.create(json.toString(), MediaType.get("application/json")))
                     .build();
@@ -64,7 +60,11 @@ public class MainActivity extends AppCompatActivity {
                 public void onResponse(Call call, Response response) throws IOException {
                     final String result = response.body().string();
                     runOnUiThread(() -> {
-                        if (aiConsole != null) aiConsole.append("\n> AI: " + result);
+                        if (aiConsole != null) {
+                            // مسح الرسالة القديمة وعرض التحليل الحقيقي
+                            aiConsole.append("\n> AI ANALYSIS RECEIVED ✅");
+                            aiConsole.append("\n> " + result);
+                        }
                     });
                 }
                 @Override
